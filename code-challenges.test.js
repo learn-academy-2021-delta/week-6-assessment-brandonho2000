@@ -24,9 +24,27 @@ var people = [
 ]
 // Expected output: ["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."]
 
-
-
+describe('job describer', () => {
+  test('take the name and givve a occupation', () => {
+  expect(describer(people)).toEqual(["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."])
+  })
+})
+// sweet. i failed.
 // b) Create the function that makes the test pass.
+// i know i want to take the "Name" and "occupation" and have it displayed together with "is" inbetween using something like .join 
+// i want to take apart the array with .map and log it as its own var called final that will be the final product
+// .map to on array and set capper to equal the names cappitolized.
+// join back the names with occupation with is inbetween and a period at the end.
+const describer = (array) => {
+var final = array.map(obj =>{
+  let names = obj.name.split(" ")
+  let capper = names.map(name => {
+    return name[0].toUpperCase() + name.slice(1)
+  })
+  return capper.join(" ") + " is " + obj.occupation + "."
+})
+return final
+}
 
 
 
@@ -39,11 +57,21 @@ var hodgepodge1 = [23, "Heyyyy!", 45, -10, 0, "Yo", false]
 var hodgepodge2 = [5, "Hola", 43, -34, "greetings", true]
 // Expected output: [ 2, 1, -1 ]
 
+describe('only takes numbers that are remainders when divided by 3, leaving the other numbers, strings and datatypes', (array) => {
+  test('only takes in numbers that are divisible by 3', () =>{
+    expect(by3(hodgepodge1)).toEqual([ 2, 0, -1, 0 ])
+    expect(by3(hodgepodge2)).toEqual([ 2, 1, -1 ])
+  })
+})
 
-
+// sicko mode. i failed
 // b) Create the function that makes the test pass.
-
-
+// i want to take the array and filter only numbers and divide those numbers by 3.
+// created the function and filter the array then set the return to display the numbers divided by 3 which is logged on a new var called filter
+const by3 = (array) => {
+  let filter = array.filter(value => typeof value === 'number')
+  return filter.map(value => value % 3)
+}
 
 // --------------------3) Create a function that takes in an array of numbers and returns the sum of all the numbers cubed.
 
@@ -54,6 +82,19 @@ var cubeAndSum1 = [2, 3, 4]
 var cubeAndSum2 = [0, 5, 10]
 // Expected output: 1125
 
+describe('takes in the array and cubes all of the items within the array', () => {
+  test('cube the numbers in array', () =>{
+    expect(cube(cubeAndSum1)).toEqual(99)
+    expect(cube(cubeAndSum2)).toEqual(1125)
+  })
+})
 
-
+// sick nasty. i failed
 // b) Create the function that makes the test pass.
+// create a function that takes an array
+// .mapped the array to cube the numbers and used .reduce to add the values
+
+const cube = (array) => {
+  let cube3 = array.map(value => value**3)
+  return cube3.reduce((value1, value2) => value1 + value2)
+}
